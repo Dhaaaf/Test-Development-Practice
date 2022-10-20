@@ -22,14 +22,14 @@ describe("myMap", () => {
         expect(arr).to.equal(arr)
     })
     it("should not call the built-in Array.map", function() {
-            const mapSpy = chai.spy.on(Array.prototype, "map");
+            const mapSpy = chai.spy.on(arr, "map");
             myMap(arr, double);
             expect(mapSpy).to.have.not.been.called();
           });
-    it("should use callback once for each element in the array", () => {
-        const mySpy = chai.spy.on(Array.prototype, "double");
-            myMap(arr, double);
-    //    const mySpy = mySpy.should.have.been.calledWith("foo");
-        expect(mySpy).to.have.been.calledWith("double");
+
+    it('should use callback array.length times', () => {
+        const spy = chai.spy(double)
+        myMap(arr, spy)
+        expect(spy).to.have.been.called.exactly(arr.length);
     })
 })
