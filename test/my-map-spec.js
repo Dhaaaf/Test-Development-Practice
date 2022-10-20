@@ -27,6 +27,9 @@ describe("myMap", () => {
             expect(mapSpy).to.have.not.been.called();
           });
     it("should use callback once for each element in the array", () => {
-        
+        const mySpy = chai.spy.on(Array.prototype, "double");
+            myMap(arr, double);
+    //    const mySpy = mySpy.should.have.been.calledWith("foo");
+        expect(mySpy).to.have.been.calledWith("double");
     })
 })
